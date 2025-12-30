@@ -109,3 +109,16 @@ def sort_by_priority():
     tasks.sort(key=lambda t: order.get(t["priority"], 4))
     print("تم الترتيب حسب الأولوية.")
 
+# filtering
+
+def show_completed_tasks():
+    show_tasks([t for t in tasks if t["status"] == "Completed"])
+
+
+def show_not_completed_tasks():
+    show_tasks([t for t in tasks if t["status"] == "ToDo"])
+
+
+def show_high_priority_tasks():
+    show_tasks([t for t in tasks if t["priority"] == "High"])
+
