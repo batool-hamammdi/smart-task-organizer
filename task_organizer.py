@@ -122,3 +122,72 @@ def show_not_completed_tasks():
 def show_high_priority_tasks():
     show_tasks([t for t in tasks if t["priority"] == "High"])
 
+# export
+
+def export_tasks_to_text():
+    with open("exported_tasks.txt", "w", encoding="utf-8") as file:
+        for i, task in enumerate(tasks, start=1):
+            file.write(f"Task {i}\n")
+            for key, value in task.items():
+                file.write(f"{key}: {value}\n")
+            file.write("-" * 30 + "\n")
+    print("تم تصدير المهام بنجاح!")
+
+
+
+# menu
+
+def menu():
+    print("\n--- Smart Task Organizer ---")
+    print("1. إضافة مهمة")
+    print("2. عرض جميع المهام")
+    print("3. تعديل مهمة")
+    print("4. حذف مهمة")
+    print("5. تحديد مهمة كمكتملة")
+    print("6. ترتيب حسب الموعد النهائي")
+    print("7. ترتيب حسب الأولوية")
+    print("8. عرض المهام المكتملة")
+    print("9. عرض المهام غير المكتملة")
+    print("10. عرض المهام عالية الأولوية")
+    print("11. تصدير المهام")
+    print("12. حفظ وخروج")
+
+
+def main():
+    load_tasks()
+    while True:
+        menu()
+        choice = input("اختر: ")
+
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            show_tasks()
+        elif choice == "3":
+            edit_task()
+        elif choice == "4":
+            delete_task()
+        elif choice == "5":
+            mark_task_completed()
+        elif choice == "6":
+            sort_by_deadline()
+        elif choice == "7":
+            sort_by_priority()
+        elif choice == "8":
+            show_completed_tasks()
+        elif choice == "9":
+            show_not_completed_tasks()
+        elif choice == "10":
+            show_high_priority_tasks()
+        elif choice == "11":
+            export_tasks_to_text()
+        elif choice == "12":
+            save_tasks()
+            print("تم الحفظ، إلى اللقاء!")
+            break
+        else:
+            print("خيار غير صحيح!")
+
+
+if __name__ == "__main__":
+    main()
